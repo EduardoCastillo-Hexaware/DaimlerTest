@@ -4,11 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using APIDaimler.Models;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authorization;
 
 namespace APIDaimler.Controllers
 {
     [EnableCors("corsRules")]
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class RoleController : ControllerBase
     {
