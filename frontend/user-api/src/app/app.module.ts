@@ -16,6 +16,11 @@ import { MessagesModule } from 'primeng/messages';
 import { MenubarModule} from 'primeng/menubar';
 import { AvatarModule } from 'primeng/avatar';
 import { FooterComponent } from './shared/footer/footer.component';
+import { DropdownModule } from 'primeng/dropdown';
+import { TagModule } from 'primeng/tag';
+import { CommonModule } from '@angular/common';
+import { InputTextModule } from 'primeng/inputtext';
+import {BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +41,12 @@ import { FooterComponent } from './shared/footer/footer.component';
     MessageModule,
     MessagesModule,
     MenubarModule,
-    AvatarModule
+    AvatarModule,
+    DropdownModule,
+    TagModule,
+    CommonModule,
+    InputTextModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

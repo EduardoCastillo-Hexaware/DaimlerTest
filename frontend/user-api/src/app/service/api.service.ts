@@ -16,4 +16,23 @@ export class ApiService {
     let dir = this.url + "Authenticate/Login";
     return this.http.post<ResponseI>(dir, form);
   }
+
+  getAllUsers():Observable<ResponseI> {
+    let dir = this.url + "User/getUsers";
+    let headers = new HttpHeaders()
+    headers = headers.append('content-type', 'application/json');
+    headers = headers.append('Authorization', 'Bearer '+ this.getToken());
+    return this.http.get<any>(dir, {headers});
+  }
+
+  getAllRoles():Observable<ResponseI> {
+    let dir = this.url + "Role/getRoles";
+    let headers = new HttpHeaders()
+    headers = headers.append('content-type', 'application/json');
+    headers = headers.append('Authorization', 'Bearer '+ this.getToken());
+    return this.http.get<any>(dir, {headers});
+  }
+  getToken() {
+    return localStorage.getItem('token');
+  }
 }

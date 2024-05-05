@@ -1,4 +1,4 @@
 export interface ResponseI{
-  message: any;
+  message?: any;
   response?: any;
 }
