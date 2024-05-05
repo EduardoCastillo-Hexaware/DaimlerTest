@@ -53,7 +53,7 @@ namespace APIDaimler.Controllers
                 return StatusCode(StatusCodes.Status200OK, new { message = "ok", response = tokenCreated });
             }
             else {
-                return StatusCode(StatusCodes.Status401Unauthorized, new { message = "Incorrect User Name or Password", response = "" });
+                return StatusCode(StatusCodes.Status200OK, new { message = "Incorrect User Name or Password", response = "" });
             }
         }
     }

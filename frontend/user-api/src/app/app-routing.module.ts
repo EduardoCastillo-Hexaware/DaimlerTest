@@ -1,16 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppComponent } from './app.component';
+import { UserComponent } from './pages/user/user.component';
+import { RoleComponent } from './pages/role/role.component';
+import { LoginComponent } from './pages/login/login.component';
+import { HeaderComponent } from './shared/header/header.component';
 
 const routes: Routes = [
   {
+    path: '',
+    component: AppComponent,
+  },
+  {
     path: 'users',
-    //component: UsersComponent
+    component: UserComponent
   },{
     path: 'login',
-    //component: LoginComponent
+    component: LoginComponent
   },{
     path:'roles',
-    //component: RolesComponent
+    component: RoleComponent
   },{
     path:'**',
     redirectTo: 'login'
@@ -22,3 +31,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+export const routingComponents= [LoginComponent, UserComponent, RoleComponent, HeaderComponent]
