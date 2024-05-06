@@ -60,6 +60,11 @@ namespace APIDaimler.Controllers
         [Route("create")]
         public IActionResult createUser([FromBody] User newUser) {
 
+            User userExist = _dbcontext.Users.Where(u=>u.UserName == newUser.UserName).FirstOrDefault();
+
+            if (userExist != null) { return BadRequest("User name already exist! " +
+                "please try with another user name");}
+
             try
             {
                 _dbcontext.Users.Add(newUser);
