@@ -4,13 +4,14 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import {UserI } from "../models/user";
 import { RoleI } from "../models/role";
+import { Constans } from "../constants/contants";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  url: string = "http://localhost:5289/api/"
+  url: string = 'http://localhost:'+ Constans.PORT +'/api/';
   constructor( private http: HttpClient) {}
 
   login(form:UserI):Observable<ResponseI> {
