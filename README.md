@@ -15,7 +15,9 @@ Es una applicacion que contiene el proceso de usuarios de la misma pagina web, d
 # Pasos a seguir para el funcionamiento de la aplicacion
 
 ### Git hub
-- Clonar el repositorio a una carpeta local 
+- Clonar el repositorio a una carpeta local usando el comando git clone https://github.com/EduardoCastillo-Hexaware/DaimlerTest.git
+- Ingresar a la carpeta donde se clono nuestro repositorio
+- Cambiarnos de Branch de master a baseBranch, puede ser usando GitKraken o simplemente corriendo el comando - "git checkout baseBranch"
 
 ### SQL
 - Correr los queries que se ubican dentro del SQLUpgrade.sql en SQL server
@@ -37,4 +39,4 @@ Al igual que tambien se crean 2 Roles
 
 # Notas
 - La applicacion backend corre en el puerto 5289 si ese puerto esta ocupado puedes cambiarlo en 'Properties/LaunchSettings.Json' al puerto que desees,
-de igual forma tendrias que cambiarlo en el fronend en el archivo 'app/constants/constants.ts' 
+de igual forma tendrias que cambiarlo en el fronend en el archivo 'app/constants/constants.ts' para poder llamar correctamente la url de nuestros endpoints.
