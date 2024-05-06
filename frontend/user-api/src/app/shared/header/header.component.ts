@@ -11,8 +11,10 @@ export class HeaderComponent {
   constructor( public oRouter:Router){
 
   }
-  NavigateToRoute(path:String){
-    this.oRouter.navigate(['employees']);
+
+  logout(){
+    localStorage.removeItem('token');
+    this.oRouter.navigate(['login']);
   }
 }
 

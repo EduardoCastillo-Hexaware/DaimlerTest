@@ -66,6 +66,13 @@ namespace APIDaimler.Controllers
         [Route("create")]
         public IActionResult createRole([FromBody] Role newRole)
         {
+            Role roleExist = _dbcontext.Roles.Where(u => u.Rolev == newRole.Rolev).FirstOrDefault();
+
+            if (roleExist != null)
+            {
+                return BadRequest("Role name already exist! " +
+                "please try with another Role name");
+            }
 
             try
             {

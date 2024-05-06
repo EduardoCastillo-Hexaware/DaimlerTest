@@ -9,7 +9,7 @@ import { HeaderComponent } from './shared/header/header.component';
 const routes: Routes = [
   {
     path: '',
-    component: AppComponent,
+    component: LoginComponent,
   },
   {
     path: 'users',
@@ -17,9 +17,6 @@ const routes: Routes = [
   },{
     path: 'login',
     component: LoginComponent
-  },{
-    path:'roles',
-    component: RoleComponent
   },{
     path:'**',
     redirectTo: 'login'

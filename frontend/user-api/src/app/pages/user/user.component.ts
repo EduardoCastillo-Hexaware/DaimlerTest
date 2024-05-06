@@ -15,13 +15,18 @@ export class UserComponent implements OnInit {
 
   users: UserI[] = [];
   roles: RoleI[] = [];
-  visibleInputModule: boolean = false;
+  visibleInputModuleUsers: boolean = false;
+  visibleInputModuleRole: boolean = false;
   rolesValues: String[] = [];
   clonedUsers: { [s: string]: UserI } = {};
 
   createUserForm = new FormGroup({
     userName : new FormControl('',Validators.required),
     password : new FormControl('',Validators.required),
+    role : new FormControl('',Validators.required)
+  });
+
+  createRoleForm = new FormGroup({
     role : new FormControl('',Validators.required)
   });
 
@@ -95,7 +100,7 @@ export class UserComponent implements OnInit {
   }
 
   getRoleId(role: string | undefined): number {
-    let roleId = 0;
+    let roleId:any = 0;
 
     this.roles.forEach(r => {
       if (r.rolev === role) {
@@ -105,12 +110,16 @@ export class UserComponent implements OnInit {
 
     return roleId;
   }
-  showDialog(){
-    this.visibleInputModule = true;
+  showUserDialog(){
+    this.visibleInputModuleUsers = true;
+  }
+
+  showRoleDialog(){
+    this.visibleInputModuleRole = true;
   }
 
   onUserCreate(form:any){
-    this.visibleInputModule = false;
+    this.visibleInputModuleUsers = false;
     const user: UserI = {};
     user.userName = form.userName;
     user.password = form.password;
@@ -128,4 +137,19 @@ export class UserComponent implements OnInit {
     });
   }
 
+  onRoleCreate(form:any){
+    this.visibleInputModuleRole = false;
+    const role: RoleI = { rolev: form.role};
+    console.log(role);
+    this.userService.createRole(role).subscribe(data => {
+      this.messageService.add({ severity:'success', summary: 'Success', detail: data.message });
+      this.ngOnInit();
+    }, error => {
+      if ((error.message).includes('401 Unauthorized')) {
+        localStorage.removeItem('token');
+      }else{
+        this.messageService.add({ severity: 'error', summary: 'Failed', detail: error.error });
+      }
+    });
+  }
 }

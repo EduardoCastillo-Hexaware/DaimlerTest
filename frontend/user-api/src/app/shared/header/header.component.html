@@ -8,10 +8,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/employees']" routerLinkActive="active">Logout</a>
-        </li>
       </ul>
+      <span class="navbar-text">
+        <button pButton pRipple type="button" pTooltip="Logout" (click)="logout()" icon="pi pi-sign-out" class="p-button-rounded p-button-text p-button-primary">
+      </button>
+      </span>
     </div>
   </div>
 </nav>

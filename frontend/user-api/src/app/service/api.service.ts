@@ -3,6 +3,7 @@ import { ResponseI} from "../models/response";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import {UserI } from "../models/user";
+import { RoleI } from "../models/role";
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +56,15 @@ export class ApiService {
     headers = headers.append('content-type', 'application/json');
     headers = headers.append('Authorization', 'Bearer '+ this.getToken());
     return this.http.post<any>(dir, user, {headers});
+  }
+
+  createRole(role:RoleI):Observable<ResponseI> {
+    let dir = this.url + "Role/create";
+    let headers = new HttpHeaders()
+    headers = headers.append('content-type', 'application/json');
+    headers = headers.append('Authorization', 'Bearer '+ this.getToken());
+    return this.http.post<any>(dir, role, {headers});
+
   }
 
   getToken() {
