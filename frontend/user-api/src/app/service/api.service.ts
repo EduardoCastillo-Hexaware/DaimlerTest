@@ -49,6 +49,14 @@ export class ApiService {
     return this.http.delete<any>(dir, {headers});
   }
 
+  createUser(user:UserI):Observable<ResponseI> {
+    let dir = this.url + "User/create";
+    let headers = new HttpHeaders()
+    headers = headers.append('content-type', 'application/json');
+    headers = headers.append('Authorization', 'Bearer '+ this.getToken());
+    return this.http.post<any>(dir, user, {headers});
+  }
+
   getToken() {
     return localStorage.getItem('token');
   }

@@ -4,6 +4,7 @@ import { UserI } from '../../models/user';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { RoleI } from '../../models/role';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-user',
@@ -14,8 +15,16 @@ export class UserComponent implements OnInit {
 
   users: UserI[] = [];
   roles: RoleI[] = [];
+  visibleInputModule: boolean = false;
   rolesValues: String[] = [];
   clonedUsers: { [s: string]: UserI } = {};
+
+  createUserForm = new FormGroup({
+    userName : new FormControl('',Validators.required),
+    password : new FormControl('',Validators.required),
+    role : new FormControl('',Validators.required)
+  });
+
   constructor(private userService: ApiService, public oRouter: Router, private messageService: MessageService) { }
 
   ngOnInit(): void {
@@ -96,4 +105,27 @@ export class UserComponent implements OnInit {
 
     return roleId;
   }
+  showDialog(){
+    this.visibleInputModule = true;
+  }
+
+  onUserCreate(form:any){
+    this.visibleInputModule = false;
+    const user: UserI = {};
+    user.userName = form.userName;
+    user.password = form.password;
+    user.roleId = this.getRoleId(form.role);
+
+    this.userService.createUser(user).subscribe(data => {
+      this.messageService.add({ severity:'success', summary: 'Success', detail: data.message });
+      this.ngOnInit();
+    }, error => {
+      if ((error.message).includes('401 Unauthorized')) {
+        localStorage.removeItem('token');
+      }else{
+        this.messageService.add({ severity: 'error', summary: 'Failed', detail: error.error });
+      }
+    });
+  }
+
 }

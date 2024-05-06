@@ -4,6 +4,6 @@ export interface UserI{
   id?: any;
   userName?: any;
   password?: any;
-  roleId?: number;
+  roleId?: number | string;
   role?: RoleI;
 }

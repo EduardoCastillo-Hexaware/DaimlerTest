@@ -21,6 +21,7 @@ import { TagModule } from 'primeng/tag';
 import { CommonModule } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
 import {BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DialogModule } from 'primeng/dialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +47,8 @@ import {BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TagModule,
     CommonModule,
     InputTextModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    DialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
