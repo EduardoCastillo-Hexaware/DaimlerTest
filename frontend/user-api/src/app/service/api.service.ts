@@ -32,6 +32,23 @@ export class ApiService {
     headers = headers.append('Authorization', 'Bearer '+ this.getToken());
     return this.http.get<any>(dir, {headers});
   }
+
+  updateUser(user:UserI):Observable<ResponseI> {
+    let dir = this.url + "User/edit";
+    let headers = new HttpHeaders()
+    headers = headers.append('content-type', 'application/json');
+    headers = headers.append('Authorization', 'Bearer '+ this.getToken());
+    return this.http.put<any>(dir, user, {headers});
+  }
+
+  deleteUser(user:UserI):Observable<ResponseI> {
+    let dir = this.url + "User/delete/" + user.id;
+    let headers = new HttpHeaders()
+    headers = headers.append('content-type', 'application/json');
+    headers = headers.append('Authorization', 'Bearer '+ this.getToken());
+    return this.http.delete<any>(dir, {headers});
+  }
+
   getToken() {
     return localStorage.getItem('token');
   }

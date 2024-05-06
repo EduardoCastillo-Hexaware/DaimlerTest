@@ -79,6 +79,10 @@ namespace APIDaimler.Controllers
             User user = _dbcontext.Users.Find(id);
             if (user == null) { return BadRequest("User was not found with id " + id); }
 
+            if (user.RoleId == 1){ return BadRequest("Cannot Delete an Admin user, " +
+                "change the roll of the user and then try to delete it!" ); 
+            }
+
             try
             {
                 _dbcontext.Remove(user);
@@ -102,7 +106,7 @@ namespace APIDaimler.Controllers
             try
             {
                 user.Password = userToEdit.Password;
-                userToEdit.RoleId = userToEdit.RoleId;
+                user.RoleId = userToEdit.RoleId;
                 
                 _dbcontext.Update(user);
                 _dbcontext.SaveChanges();
